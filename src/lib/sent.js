@@ -6,11 +6,17 @@ const { a: A, p: P, e: E, v: V, r: ERAS } = await (await fetch('/data/sent.json'
 const N = E.length;
 const $ = (id) => document.getElementById(id);
 const clamp = (lo, x, hi) => Math.max(lo, Math.min(hi, x));
-const dark = matchMedia('(prefers-color-scheme: dark)'),
-	lg = matchMedia('(min-width: 1024px)');
+const lg = matchMedia('(min-width: 1024px)');
 const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-dark.onchange = () => location.reload();
-const C = dark.matches
+document.documentElement.classList.toggle(
+	'dark',
+	(localStorage.t || (matchMedia('(prefers-color-scheme: dark)').matches ? 'd' : 'l')) === 'd'
+);
+$('theme').onclick = () => {
+	localStorage.t = document.documentElement.classList.contains('dark') ? 'l' : 'd';
+	location.reload();
+};
+const C = document.documentElement.classList.contains('dark')
 	? {
 			bg: '#1a1a19',
 			land: '#2b2b29',

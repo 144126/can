@@ -6,6 +6,8 @@
 
 <svelte:head>
 	<title>sent</title>
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	{@html `<script>document.documentElement.classList.toggle('dark', (localStorage.t || (matchMedia('(prefers-color-scheme: dark)').matches ? 'd' : 'l')) === 'd')</script>`}
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link
@@ -37,6 +39,12 @@
 				<button data-tr="b" class="rounded-md px-2.5">bsb</button>
 				<button data-tr="y" class="rounded-md px-2.5">ylt</button>
 			</div>
+			<button
+				id="theme"
+				aria-label="switch light or dark"
+				class="h-9 shrink-0 rounded-lg border border-black/10 px-2.5 text-sm dark:border-white/15"
+				><span class="dark:hidden">dark</span><span class="hidden dark:inline">light</span></button
+			>
 		</div>
 	</header>
 
